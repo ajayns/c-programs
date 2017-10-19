@@ -55,7 +55,7 @@ void ins_last()
 	}
 }
 
-// Insert in the beginnning of the linked list
+// Insert into the beginnning of the linked list
 void ins_beg()
 {
 	char roll[9],name[20];
