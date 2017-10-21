@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+// Define structure student
 struct stud{
 		int Roll_No;
 		char Name[20];
@@ -12,40 +12,47 @@ struct stud{
 		struct stud*next;
 }*head=NULL,*temp,*save,*save2;
 
-
+// Insert into the ordered linked list
 void ins()
 {
 	char name[20];
 	int roll;
     float cg;
+
+    // Get new student data
 	printf("Enter Student Roll no.:\n");
 	scanf("%d",&roll);
 	printf("Enter Student Name:\n");
 	scanf("%s",name);
 	printf("Enter Student CGPA:\n");
 	scanf("%f",&cg);
+
 	temp=(struct stud*)malloc(sizeof(struct stud));
 	temp->Roll_No=roll;	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=NULL;	
+
+	// When list is empty
 	if(head==NULL||head->Roll_No >= temp->Roll_No)
 	{
 		temp->next=head;
 		head=temp;
 	
 	}
+	// When list exists
 	else
 	{
 		save=head;
 		while(save->next!=NULL&&(save->next->Roll_No)<(temp->Roll_No))
-            		save=save->next;
+    		save=save->next;
 		temp->next=save->next;
-        	save->next=temp;
+    	save->next=temp;
 	}
 }
 
 
+// Delete first element of the linked list
 void del_beg()
 {
 	if(head==NULL)
@@ -54,6 +61,7 @@ void del_beg()
 		head=head->next;
 }
 
+// Delete element in the given position
 void del_pos()
 {
 	int pos;
@@ -72,6 +80,7 @@ void del_pos()
     }
 }
 
+// Delete last element in linked list
 void del_end()
 {
 	if(head==NULL)
@@ -85,6 +94,7 @@ void del_end()
     }
 }
 
+// Display
 void disp()
 {
 	temp=head;
@@ -97,6 +107,7 @@ void disp()
 	}
 }
 
+// Search for an element in the list
 void search()
 {
     int s;
@@ -127,7 +138,7 @@ void search()
             
 }
 
-
+// Driver function
 int main()
 {
 	int choice=0;

@@ -5,6 +5,7 @@
 #include<stdlib.h>
 #include<string.h>
 
+// Define structure student
 struct stud{
 		char Roll_No[9];
 		char Name[20];
@@ -13,25 +14,32 @@ struct stud{
 		struct stud*prev;
 }*head=NULL,*temp,*save,*save2;
 
+// Insert at the end of the linked list
 void ins_last()
 {
 	char roll[9],name[20];
 	float cg;
+
+	// Get new student data
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
 	scanf("%s",name);
 	printf("Enter Student CGPA:\n");
 	scanf("%f",&cg);
+
 	temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=NULL;	
 	temp->prev=NULL;
+
+	// When list is empty
 	if(head==NULL)
 		head=temp;
 	
+	// When list exists
 	else	
    	{   
 		save=head;
@@ -43,24 +51,32 @@ void ins_last()
 	}
 }
 
+// Insert in the beginning of the linked list
 void ins_beg()
 {
 	char roll[9],name[20];
 	float cg;
+
+	// Get the new student
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
 	scanf("%s",name);
 	printf("Enter Student CGPA:\n");
 	scanf("%f",&cg);
+
 	temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=NULL;
 	temp->prev=NULL;	
+
+	// If list is empty
 	if(head==NULL)
 		head=temp;
+
+	// If list exists
 	else
 	{
 		head->prev=temp;
@@ -70,11 +86,14 @@ void ins_beg()
 	}
 }
 
+// Insert in a specified postion
 void ins_pos()
 {
 	int pos;
-    	char roll[9],name[20];
+	char roll[9],name[20];
 	float cg;
+
+	// Get new student data	
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
@@ -83,38 +102,45 @@ void ins_pos()
 	scanf("%f",&cg);
 	printf("Enter Position:\n");
 	scanf("%d",&pos);
-    	temp=(struct stud*)malloc(sizeof(struct stud));
+
+	temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=NULL;
 	temp->prev=NULL;	
+
+	// If list is empty
 	if(head==NULL)
 		head=temp;
+
+	// If list exists
 	else
 	{   
 		save=head;
-        	pos-=1;
+    	pos-=1;
 		while(--pos)
-            		save=save->next;
+    		save=save->next;
         	
 		save2=save->next;
-        	save->next=temp;
-        	temp->prev=save;
+    	save->next=temp;
+    	temp->prev=save;
 		temp->next=save2;
 		save2->prev=temp;
 	}
 }
 
+// Delete first element of the linked list
 void del_beg()
 {
 	if(head==NULL)
 		printf("Underflow\n");
 	else
 		head=head->next;
-		head->prev=NULL;
+	head->prev=NULL;
 }
 
+// Delete element in the given position
 void del_pos()
 {
 	int pos;
@@ -128,11 +154,12 @@ void del_pos()
         pos--;
         while(--pos)
             save=save->next;
-	save->next->next->prev=save;	
-	save->next=save->next->next;
+		save->next->next->prev=save;	
+		save->next=save->next->next;
     }
 }
 
+// Delete last element in linked list
 void del_end()
 {
 	if(head==NULL)
@@ -146,6 +173,7 @@ void del_end()
     }
 }
 
+// Display
 void disp()
 {
 	temp=head;
@@ -167,6 +195,7 @@ void disp()
 	}
 }
 
+// Search for an element in the list
 void search()
 {
     char s[100];
@@ -197,6 +226,7 @@ void search()
             
 }
 
+// Driver function
 int main()
 {
 	int choice=0;
