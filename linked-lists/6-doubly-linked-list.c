@@ -136,10 +136,8 @@ void del_beg()
 	if(head==NULL)
 		printf("Underflow\n");
 	else
-	{
 		head=head->next;
-		head->prev=NULL;
-	}
+	head->prev=NULL;
 }
 
 // Delete element in the given position
