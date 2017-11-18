@@ -19,21 +19,25 @@ struct Stack* createStack(int size){
     stack->array = (int*) malloc(stack->size * sizeof(int));
     return stack;
 }
- 
+
+// Return if stack is empty or not
 int isEmpty(struct Stack* stack){
     return stack->top == -1 ;
 }
- 
+
+// Return element on top of stack
 char peek(struct Stack* stack){
     return stack->array[stack->top];
 }
- 
+
+// Return and remove element on top of stack 
 char pop(struct Stack* stack){
     if (!isEmpty(stack))
         return stack->array[stack->top--] ;
     return '$';
 }
- 
+
+// Add element to stack
 void push(struct Stack* stack, char op){
     stack->array[++stack->top] = op;
 }
@@ -69,6 +73,7 @@ int evaluatePostfix(char* exp)
     return pop(stack);
 }
  
+// Driver function
 int main()
 {
 	char exp[100];

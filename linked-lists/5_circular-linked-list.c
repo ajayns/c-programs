@@ -5,6 +5,7 @@
 #include<stdlib.h>
 #include<string.h>
 
+// Define structure student
 struct stud{
 		char Roll_No[9];
 		char Name[20];
@@ -12,55 +13,70 @@ struct stud{
 		struct stud*next;
 }*save1,*head=NULL,*temp,*save,*save2;
 
+// Insert at the end of the linked list
 void ins_last()
 {
 	char roll[9],name[20];
 	float cg;
+	
+	// Get new student data
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
 	scanf("%s",name);
 	printf("Enter Student CGPA:\n");
 	scanf("%f",&cg);
+
 	temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=head;	
+
+	// When list is empty
 	if(head==NULL)
 		head=temp;
 	
+	// When list exists
 	else
     {	temp->next=head;
 		save=head;
 		do
 		{
 			save=save->next;
-		}while(save->next!=head);
+		} while(save->next!=head);
 		save->next=temp;
 	}
 }
 
+// Insert into the beginning of the linked list
 void ins_beg()
 {
 	char roll[9],name[20];
 	float cg;
+
+	// Get new student data
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
 	scanf("%s",name);
 	printf("Enter Student CGPA:\n");
 	scanf("%f",&cg);
+
 	temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
 	temp->next=NULL;	
+
+	// If list is empty
 	if(head==NULL)
 	{
 		head=temp;
 		head->next=head;
 	}	
+
+	// If list exists
 	else
 	{
 		save=head;
@@ -70,16 +86,19 @@ void ins_beg()
 		do
 		{
 			save1=save1->next;
-		}while(save1->next!=save);
+		} while(save1->next!=save);
 		save1->next=temp;
 	}
 }
 
+// Insert in a specified position
 void ins_pos()
 {
 	int pos;
     char roll[9],name[20];
 	float cg;
+
+	// Get new student data
 	printf("Enter Student Roll no.:\n");
 	scanf("%s",roll);
 	printf("Enter Student Name:\n");
@@ -88,13 +107,18 @@ void ins_pos()
 	scanf("%f",&cg);
     printf("Enter Position:\n");
 	scanf("%d",&pos);
+
     temp=(struct stud*)malloc(sizeof(struct stud));
 	strcpy(temp->Roll_No,roll);	
 	strcpy(temp->Name,name);
 	temp->CGPA=cg;
-	temp->next=NULL;	
+	temp->next=NULL;
+
+	// If list is empty
 	if(head==NULL)
 		head=temp;
+
+	// If list exists
 	else
 	{   save=head;
         pos-=1;
@@ -106,6 +130,7 @@ void ins_pos()
 	}
 }
 
+// Delete first element of the linked list
 void del_beg()
 {
 	if(head->next==head)
@@ -118,13 +143,14 @@ void del_beg()
 		do
 		{
 			save=save->next;
-		}while(save->next!=head);
+		} while(save->next!=head);
 		save->next=save->next->next;
 		head=head->next;
 		
 	}
 }
 
+// Delete element in the given position
 void del_pos()
 {
 	int pos;
@@ -143,6 +169,7 @@ void del_pos()
     }
 }
 
+// Delete last element in linked list
 void del_end()
 {
 	if(head==NULL)
@@ -156,6 +183,7 @@ void del_end()
     }
 }
 
+// Display
 void disp()
 {
 	temp=head;
@@ -165,9 +193,10 @@ void disp()
 		printf("Student Name:%s\n",temp->Name);
 		printf("Student CGPA:%f\n",temp->CGPA);
 		temp=temp->next;
-	}while(temp!=head);
+	} while(temp!=head);
 }
 
+// Search for an element in the list
 void search()
 {
     char s[100];
@@ -186,7 +215,7 @@ void search()
         else
             flag=0;
         temp=temp->next;
-    }while(temp!=head);
+    } while(temp!=head);
     if(flag==1)
     {
         printf("\n\nStudent Roll no.:%s\n",save->Roll_No);
@@ -198,6 +227,7 @@ void search()
             
 }
 
+// Driver function
 int main()
 {
 	int choice=0;
